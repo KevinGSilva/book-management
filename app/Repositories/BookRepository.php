@@ -27,12 +27,15 @@ class BookRepository
             'author_id' => 'required',
             'published_at' => 'required|date',
             'description' => 'required',
+            'cover' => 'mimes:jpg,jpeg,png|max:2048',
         ])->setCustomMessages([
             'title.required' => 'Campo nome é obrigatório',
             'author_id.required' => 'Campo autor é obrigatório',
             'published_at.required' => 'Campo data de publicação é obrigatório',
             'published_at.date' => 'Campo data de publicação deve ser uma data válida',
             'description.required' => 'Campo descrição é obrigatório',
+            'cover.mimes' => 'Campo capa deve ser um arquivo do tipo: jpg, jpeg ou png',
+            'cover.max' => 'Campo capa deve ter no máximo 2MB',
         ]);
 
         if ($validator->fails()) {
@@ -49,12 +52,15 @@ class BookRepository
             'author_id' => 'required',
             'published_at' => 'required|date',
             'description' => 'required',
+            'cover' => 'mimes:jpg,jpeg,png|max:2048',
         ])->setCustomMessages([
             'title.required' => 'Campo nome é obrigatório',
             'author_id.required' => 'Campo autor é obrigatório',
             'published_at.required' => 'Campo data de publicação é obrigatório',
             'published_at.date' => 'Campo data de publicação deve ser uma data válida',
             'description.required' => 'Campo descrição é obrigatório',
+            'cover.mimes' => 'Campo capa deve ser um arquivo do tipo: jpg, jpeg ou png',
+            'cover.max' => 'Campo capa deve ter no máximo 2MB',
         ]);
 
         if ($validator->fails()) {

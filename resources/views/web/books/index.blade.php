@@ -1,6 +1,7 @@
 @extends('layouts.base')
 
 @section('css')
+    <link rel="stylesheet" href="//cdn.datatables.net/2.2.1/css/dataTables.dataTables.min.css"></link>
 @endsection
 
 @section('content')
@@ -40,4 +41,5 @@
 
 @section('scripts')
     @parent
+    <script src="//cdn.datatables.net/2.2.1/js/dataTables.min.js"></script>
 @endsection

@@ -1,5 +1,7 @@
 @extends('layouts.base')
 
+@section('css')
+@endsection
 
 @section('content')
     <div class="row">
@@ -34,4 +36,8 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    @parent
 @endsection

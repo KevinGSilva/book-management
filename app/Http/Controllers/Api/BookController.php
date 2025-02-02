@@ -48,7 +48,17 @@ class BookController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $book = $this->bookRepository->getBook()->findOrFail($id);
+
+        $media = $book->getFirstMedia('cover');
+
+        if ($media) {
+            $book->cover_url = $media->getUrl('thumb');
+        } else {
+            $book->cover_url = null;
+        }
+
+        return $book;
     }
 
     /**

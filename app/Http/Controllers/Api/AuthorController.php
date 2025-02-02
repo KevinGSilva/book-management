@@ -54,6 +54,6 @@ class AuthorController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        return $this->authorRepository->getAuthor()->find($id)->delete();
     }
 }

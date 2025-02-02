@@ -46,6 +46,10 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
+        return [
+            'success' => true,
+            'book' => $this->bookRepository->store($request->all()),
+        ];
     }
 
     /**

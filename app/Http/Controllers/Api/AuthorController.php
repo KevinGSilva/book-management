@@ -30,7 +30,7 @@ class AuthorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $this->authorRepository->store($request->all());
     }
 
     /**

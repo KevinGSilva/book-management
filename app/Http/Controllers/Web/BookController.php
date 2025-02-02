@@ -78,6 +78,10 @@ class BookController extends Controller
      */
     public function update(Request $request)
     {
+        return [
+            'success' => true,
+            'book' => $this->bookRepository->update($request->get('id'), $request->all()),
+        ];
     }
 
     /**

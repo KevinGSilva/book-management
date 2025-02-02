@@ -49,4 +49,17 @@ class AuthorRepository
 
         return $book->update($data);
     }
+
+    public function deleteWithoutBook(int $id): bool
+    {
+        $author = $this->author->find($id);
+
+        if ($author->books()->count() > 0) {
+            throw ValidationException::withMessages([
+                'author' => ['Não é possível excluir um autor que possui livros.'],
+            ]);
+        }
+
+        return $author->delete();
+    }
 }

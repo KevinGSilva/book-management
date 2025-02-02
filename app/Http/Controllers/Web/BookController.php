@@ -3,10 +3,21 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Repositories\AuthorRepository;
+use App\Repositories\BookRepository;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
+    private $bookRepository;
+    private $authorRepository;
+
+    public function __construct(BookRepository $bookRepository, AuthorRepository $authorRepository)
+    {
+        $this->bookRepository = $bookRepository;
+        $this->authorRepository = $authorRepository;
+    }
+
     /**
      * Display a listing of the resource.
      */

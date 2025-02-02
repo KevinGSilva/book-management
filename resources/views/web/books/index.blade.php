@@ -46,6 +46,53 @@
     <script>
         jQuery( document ).ready(function( $ ) {
             $('#content').DataTable();
+
+            $('#content').on('click', 'button', function () {
+                const id = $(this).data('id')
+
+                Swal.fire({
+                    title: 'Você tem certeza?',
+                    text: "Você não poderá reverter isso!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Sim, deletar!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: "{{ route('books.destroy') }}",
+                            type: "POST",
+                            data: {id: id},
+                        }).done(function (response) {
+                            if (response.success) {
+                                Swal.fire({
+                                    title: 'Livro',
+                                    text: 'Livro criado com sucesso',
+                                    type: 'success',
+                                    icon: 'success',
+                                }).then(() => {
+                                    location.reload()
+                                })
+                            }
+                        }).fail(function (err) {
+                            let message = 'Erro ao criar o livro'
+                            if (err.responseJSON && err.responseJSON.errors) {
+                                console.log('err.responseJSON.errors', err.responseJSON.errors)
+                                message = Object.values(err.responseJSON.errors)[0].join('\n')
+                            }
+                            Swal.fire({
+                                title: 'Ops',
+                                text: message,
+                                type: 'error',
+                                icon: 'error',
+                            })
+                        }).always(function () {
+                            $('#btn-submit').attr('disabled', false)
+                        });
+                    }
+                })
+            });
         });
     </script>
 @endsection

@@ -27,6 +27,14 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-4">
+                    <div class="row">
+                        <div class="col-lg-12 mb-3">
+                            <label for="cover" class="form-label">Imagem de capa</label>
+                            <input class="form-control w-100" type="file" id="cover" accept="image/png, image/jpeg">
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="row mb-3">
                 <div class="col-lg-3">

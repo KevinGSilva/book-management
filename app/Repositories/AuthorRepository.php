@@ -3,6 +3,8 @@
 namespace App\Repositories;
 
 use App\Models\Author;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 
 class AuthorRepository
 {
@@ -16,5 +18,19 @@ class AuthorRepository
     public function getAuthor(): Author
     {
         return $this->author;
+    }
+
+    public function store(array $data): Author
+    {
+        $validator = Validator::make($data, [
+            'name' => 'required',
+            'status' => 'required|boolean',
+        ]);
+
+        if ($validator->fails()) {
+            throw new ValidationException($validator);
+        }
+
+        return $this->author->create($data);
     }
 }

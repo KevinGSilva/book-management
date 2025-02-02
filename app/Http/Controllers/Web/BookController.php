@@ -33,6 +33,12 @@ class BookController extends Controller
      */
     public function create()
     {
+        $book = $this->bookRepository->getBook();
+        $authors = $this->authorRepository->getAuthor()
+                ->where('status', 1)
+                ->get()->values();
+
+        return view('web.books.form', compact('book', 'authors'), ['action' => 'create']);
     }
 
     /**

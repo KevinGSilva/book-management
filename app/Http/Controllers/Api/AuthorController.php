@@ -3,16 +3,26 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Repositories\AuthorRepository;
 use Illuminate\Http\Request;
 
 class AuthorController extends Controller
 {
+    private $authorRepository;
+
+    public function __construct(AuthorRepository $authorRepository)
+    {
+        $this->authorRepository = $authorRepository;
+    }
+    
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $authors = $this->authorRepository->getAuthor()->get()->values();
+
+        return response()->json($authors);
     }
 
     /**

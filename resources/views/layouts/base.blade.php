@@ -19,6 +19,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js" crossorigin="anonymous"></script>
 
         <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.6/dist/sweetalert2.min.css" rel="stylesheet">
+
+        @yield('css')
     </head>
     <body class="nav-fixed">
         <nav class="topnav navbar navbar-expand shadow justify-content-between justify-content-sm-start navbar-light bg-white" id="sidenavAccordion">
@@ -88,7 +90,9 @@
             </div>
             <div id="layoutSidenav_content">
 
-                @yield('content')
+                <div class="container-fluid px-4 mt-4">
+                    @yield('content')
+                </div>
                 
                 <footer class="footer-admin mt-auto footer-light">
                     <div class="container-xl px-4">
@@ -123,5 +127,7 @@
                 });
             });
         </script>
+
+        @yield('scripts')
     </body>
 </html>

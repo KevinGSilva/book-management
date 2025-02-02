@@ -3,10 +3,18 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Repositories\BookRepository;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
+    private $bookRepository;
+
+    public function __construct(BookRepository $bookRepository)
+    {
+        $this->bookRepository = $bookRepository;
+    }
+    
     /**
      * Display a listing of the resource.
      */

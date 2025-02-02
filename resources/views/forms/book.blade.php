@@ -28,6 +28,13 @@
                     </div>
                 </div>
                 <div class="col-lg-4">
+                    @if (!empty($book->getFirstMedia('cover')))
+                        <div class="row">
+                            <div class="col-lg-12 mb-3">
+                                <img src="{{ !empty($book->getFirstMedia('cover')) ? $book->getFirstMedia('cover')->getUrl('thumb') : '' }}" class="img-fluid">
+                            </div>
+                        </div>
+                    @endif
                     <div class="row">
                         <div class="col-lg-12 mb-3">
                             <label for="cover" class="form-label">Imagem de capa</label>
@@ -71,6 +78,10 @@
             formData.append('published_at', publishedAt);
 
             formData.append('description', $('#description').val())
+
+            if (document.getElementById('cover').files.length) {
+                formData.append('cover', document.getElementById('cover').files[0])
+            }
 
             return formData
         }

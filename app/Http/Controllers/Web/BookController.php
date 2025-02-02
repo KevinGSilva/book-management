@@ -65,6 +65,12 @@ class BookController extends Controller
      */
     public function edit(string $id)
     {
+        $book = $this->bookRepository->getBook()->find($id);
+        $authors = $this->authorRepository->getAuthor()
+                ->where('status', 1)
+                ->get()->values();
+
+        return view('web.books.form', compact('book', 'authors'), ['action' => 'update']);
     }
 
     /**

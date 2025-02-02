@@ -42,4 +42,10 @@
 @section('scripts')
     @parent
     <script src="//cdn.datatables.net/2.2.1/js/dataTables.min.js"></script>
+
+    <script>
+        jQuery( document ).ready(function( $ ) {
+            $('#content').DataTable();
+        });
+    </script>
 @endsection

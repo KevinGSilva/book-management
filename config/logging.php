@@ -127,6 +127,12 @@ return [
             'path' => storage_path('logs/laravel.log'),
         ],
 
+        'clear-logs' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/clear-log/' . now()->format('Y-m-d') . '.log'),
+            'level' => 'info',
+        ],
+
     ],
 
 ];

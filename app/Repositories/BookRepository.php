@@ -42,7 +42,13 @@ class BookRepository
             throw new ValidationException($validator);
         }
 
-        return $this->book->create($data);
+        $book = $this->book->create($data);
+
+        if (isset($data['cover'])) {
+            $this->saveCover($book, $data['cover']);
+        }
+
+        return $book;
     }
 
     public function update(int $id, array $data): bool
@@ -69,6 +75,16 @@ class BookRepository
         
         $book = $this->book->find($id);
 
+        if (isset($data['cover'])) {
+            $this->saveCover($book, $data['cover']);
+        }
+
         return $book->update($data);
+    }
+
+    private function saveCover($book, $cover): void
+    {
+        $book->addMedia($cover)
+            ->toMediaCollection('cover');
     }
 }

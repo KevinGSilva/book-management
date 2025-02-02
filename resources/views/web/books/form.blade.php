@@ -5,3 +5,7 @@
         @include('forms.book')
     </form>
 @endsection
+
+@section('scripts')
+@parent
+@endsection

@@ -26,6 +26,24 @@ class ClearLogs extends Command
      */
     public function handle()
     {
-        //
+        $this->info('Iniciando limpeza de logs...');
+
+        try {
+            $count = Activity::where('created_at', '<=', now()->subDays(30))->count();
+    
+            if ($count === 0) {
+                \Log::channel('clear-logs')->info('Nenhum registro de log encontrado para limpeza.');
+                $this->info('Nenhum registro de log encontrado para limpeza.');
+                return;
+            }
+            
+            Activity::where('created_at', '<=', now()->subDays(30))->delete();
+    
+            \Log::channel('clear-logs')->info("Foram excluídos {$count} registros de log.");
+    
+            $this->info("Limpeza de logs concluída. Total de registros removidos: {$count}");
+        } catch (\Exception $e) {
+            \Log::channel('clear-logs')->error('Erro ao limpar logs: ' . $e->getMessage());
+        }
     }
 }

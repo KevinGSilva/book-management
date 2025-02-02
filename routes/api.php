@@ -17,4 +17,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
 
     Route::apiResource('authors', AuthorController::class);
+    Route::get('authors/{id}/books', [AuthorController::class, 'books']);
 });

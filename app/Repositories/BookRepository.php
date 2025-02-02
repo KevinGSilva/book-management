@@ -29,7 +29,7 @@ class BookRepository
             'description' => 'required',
             'cover' => 'mimes:jpg,jpeg,png|max:2048',
         ])->setCustomMessages([
-            'title.required' => 'Campo nome é obrigatório',
+            'title.required' => 'Campo título é obrigatório',
             'author_id.required' => 'Campo autor é obrigatório',
             'published_at.required' => 'Campo data de publicação é obrigatório',
             'published_at.date' => 'Campo data de publicação deve ser uma data válida',
@@ -60,7 +60,7 @@ class BookRepository
             'description' => 'required',
             'cover' => 'mimes:jpg,jpeg,png|max:2048',
         ])->setCustomMessages([
-            'title.required' => 'Campo nome é obrigatório',
+            'title.required' => 'Campo título é obrigatório',
             'author_id.required' => 'Campo autor é obrigatório',
             'published_at.required' => 'Campo data de publicação é obrigatório',
             'published_at.date' => 'Campo data de publicação deve ser uma data válida',

@@ -28,4 +28,24 @@ class AuthController extends Controller
 
         return response()->json(['token' => $token], 201);
     }
+
+    public function login(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user || !Hash::check($request->password, $user->password)) {
+            throw ValidationException::withMessages([
+                'email' => ['As credenciais fornecidas estão incorretas.'],
+            ]);
+        }
+
+        $token = $user->createToken('auth_token')->plainTextToken;
+
+        return response()->json(['token' => $token]);
+    }
 }

@@ -23,6 +23,9 @@ class BookController extends Controller
      */
     public function index()
     {
+        $books = $this->bookRepository->getBook()->get()->values();
+
+        return view('web.books.index', compact('books'));
     }
 
     /**

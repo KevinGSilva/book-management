@@ -56,4 +56,11 @@ class AuthorController extends Controller
     {
         return $this->authorRepository->deleteWithoutBook($id);
     }
+
+    public function books(string $id)
+    {
+        $author = $this->authorRepository->getAuthor()->find($id);
+
+        return response()->json($author->books);
+    }
 }

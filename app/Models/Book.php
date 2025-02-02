@@ -36,7 +36,7 @@ class Book extends Model implements HasMedia
     public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('thumb')
-                ->fit(Fit::Contain, 200, 200)
+                ->fit(Fit::Crop, 200, 200)
                 ->quality(100)
                 ->nonQueued();
     }

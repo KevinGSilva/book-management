@@ -33,4 +33,20 @@ class AuthorRepository
 
         return $this->author->create($data);
     }
+
+    public function update(int $id, array $data): bool
+    {
+        $validator = Validator::make($data, [
+            'name' => 'required',
+            'status' => 'required|boolean',
+        ]);
+
+        if ($validator->fails()) {
+            throw new ValidationException($validator);
+        }
+        
+        $book = $this->author->find($id);
+
+        return $book->update($data);
+    }
 }

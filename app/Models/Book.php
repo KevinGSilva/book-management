@@ -46,7 +46,7 @@ class Book extends Model implements HasMedia
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-        ->logOnly(['*'])->logOnlyDirty();
+        ->logOnly(['*'])->logOnlyDirty()->dontSubmitEmptyLogs();
     }
 
 }

@@ -7,8 +7,15 @@ export default defineConfig({
             input: [
                 'resources/sass/app.scss',
                 'resources/js/app.js',
+
+                'resources/css/styles.css',
+                'resources/js/scripts.js',
+
+                'resources/assets/images/favicon.png',
+                'resources/assets/images/profiles/profile-1.png',
             ],
             refresh: true,
         }),
     ],
+    assetsInclude: ['**/*.png', '**/*.jpg', '**/*.svg'],
 });

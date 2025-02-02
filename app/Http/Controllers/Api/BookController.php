@@ -74,6 +74,6 @@ class BookController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        return $this->bookRepository->getBook()->find($id)->delete();
     }
 }

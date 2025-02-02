@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Spatie\Image\Enums\Fit;
 
 class Book extends Model implements HasMedia
 {
@@ -30,4 +32,13 @@ class Book extends Model implements HasMedia
     {
         $this->addMediaCollection('cover')->singleFile();
     }
+
+    public function registerMediaConversions(Media $media = null): void
+    {
+        $this->addMediaConversion('thumb')
+                ->fit(Fit::Contain, 200, 200)
+                ->quality(100)
+                ->nonQueued();
+    }
+
 }

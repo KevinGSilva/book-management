@@ -38,7 +38,7 @@ class AuthorController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return $this->authorRepository->getAuthor()->find($id);
     }
 
     /**

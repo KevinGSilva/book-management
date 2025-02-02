@@ -112,5 +112,16 @@
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.6/dist/sweetalert2.all.min.js"></script>
 
         <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
+
+        <script type="text/javascript">
+            jQuery( document ).ready(function( $ ) {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                });
+            });
+        </script>
     </body>
 </html>

@@ -20,7 +20,19 @@ class BookController extends Controller
      */
     public function index()
     {
-        //
+        $books = $this->bookRepository->getBook()->get()->values()->map(function ($book) {
+            $media = $book->getFirstMedia('cover');
+
+            if ($media) {
+                $book->cover_url = $media->getUrl('thumb');
+            } else {
+                $book->cover_url = null;
+            }
+
+            return $book;
+        });
+
+        return response()->json($books);
     }
 
     /**

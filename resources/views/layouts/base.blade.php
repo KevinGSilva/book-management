@@ -70,6 +70,7 @@
                             <div class="collapse" id="collapseDashboards" data-bs-parent="#accordionSidenav">
                                 <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
                                     <a class="nav-link" href="{{ route('books.index') }}">Listar</a>
+                                    <a class="nav-link" href="{{ route('books.create') }}">Registrar</a>
                                 </nav>
                             </div>
                         </div>

@@ -13,6 +13,9 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::middleware(['auth:sanctum', AdminMiddlewareApi::class])->group(function () {
     Route::get('/user', [AuthController::class, 'user']);
     Route::post('/logout', [AuthController::class, 'logout']);
+    Route::get('/check-token', function () {
+        return response()->json(true);
+    });
 
     Route::apiResource('authors', AuthorController::class);
     Route::get('authors/{id}/books', [AuthorController::class, 'books']);

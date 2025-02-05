@@ -25,7 +25,7 @@
                                 <td>{{ $book->id }}</td>
                                 <td>{{ $book->title }}</td>
                                 <td>{{ $book->author->name }}</td>
-                                <td>{{ $book->published_at->format('d/m/Y') }}</td>
+                                <td>{{ $book->published_at ? \Carbon\Carbon::parse($book->published_at)->format('d/m/Y') : '' }}</td>
                                 <td>
                                     <a href="{{ route('books.edit', $book->id) }}" class="btn btn-warning">Edit</a>
                                     <button type="button" class="btn btn-danger" data-id={{ $book->id }}>Delete</button>

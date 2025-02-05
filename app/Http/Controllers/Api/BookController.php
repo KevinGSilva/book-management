@@ -32,6 +32,10 @@ class BookController extends Controller
             return $book;
         });
 
+        if (request('withAuthor') == true) {
+            $books->load('author');
+        }
+
         return response()->json($books);
     }
 

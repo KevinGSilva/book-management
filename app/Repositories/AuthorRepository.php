@@ -25,6 +25,9 @@ class AuthorRepository
         $validator = Validator::make($data, [
             'name' => 'required',
             'status' => 'required|boolean',
+        ])->setCustomMessages([
+            'name.required' => 'Campo nome é obrigatório',
+            'status.required' => 'Campo status é obrigatório',
         ]);
 
         if ($validator->fails()) {
@@ -39,6 +42,9 @@ class AuthorRepository
         $validator = Validator::make($data, [
             'name' => 'required',
             'status' => 'required|boolean',
+        ])->setCustomMessages([
+            'name.required' => 'Campo nome é obrigatório',
+            'status.required' => 'Campo status é obrigatório',
         ]);
 
         if ($validator->fails()) {

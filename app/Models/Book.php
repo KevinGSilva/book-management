@@ -21,7 +21,7 @@ class Book extends Model implements HasMedia
         'published_at',
     ];
 
-    protected $casts = [
+    protected $date = [
         'published_at' => 'date',
     ];
 

@@ -4,15 +4,19 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\BookRepository;
+use App\Services\ApiImagesService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BookController extends Controller
 {
     private $bookRepository;
+    private $apiImagesService;
 
-    public function __construct(BookRepository $bookRepository)
+    public function __construct(BookRepository $bookRepository, ApiImagesService $apiImagesService)
     {
         $this->bookRepository = $bookRepository;
+        $this->apiImagesService = $apiImagesService;
     }
     
     /**
@@ -44,7 +48,24 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        return $this->bookRepository->store($request->all());
+        DB::beginTransaction();
+
+        try {
+            $book = $this->bookRepository->store($request->except('cover'));
+    
+            if ($book) {
+                if ($request->get('cover')) {
+                    $this->apiImagesService->decodeImageBase64($book, $request->get('cover'));
+                }
+            }
+
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
+
+        return $book;
     }
 
     /**
@@ -70,7 +91,23 @@ class BookController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        return $this->bookRepository->update($id, $request->all());
+        DB::beginTransaction();
+        try {
+            $book = $this->bookRepository->update($id, $request->except('cover'));
+
+            if ($book) {
+                if ($request->get('cover')) {
+                    $updatedBook = $this->bookRepository->getBook()->find($id);
+                    $this->apiImagesService->decodeImageBase64($updatedBook, $request->get('cover'));
+                }
+            }
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
+
+        return $book;
     }
 
     /**

@@ -19,7 +19,7 @@
                         </div>
                         <div class="col-lg-6 mb-3">
                             <label for="published-at" class="form-label">Ano de publicação</label>
-                            <input type="text" class="form-control date" id="published-at" name="published-at" required value="{{ !empty($book->published_at) ?  $book->published_at->format('d/m/Y') : $book->published_at }}">
+                            <input type="date" class="form-control" id="published-at" name="published-at" required value="{{ $book->published_at }}">
                         </div>
                         <div class="col-lg-6 mb-3">
                             <label for="description" class="form-label">Descrição</label>
@@ -71,11 +71,8 @@
             formData.append('id', parseInt('{{ $book->id }}'))
             formData.append('title', $('#title').val())
             formData.append('author_id', $('#author').val())
-            
-            let dateParts = $('#published-at').val().split('/');
-            let publishedAt = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`; // YYYY-MM-DD
 
-            formData.append('published_at', publishedAt);
+            formData.append('published_at', $('#published-at').val());
 
             formData.append('description', $('#description').val())
 
